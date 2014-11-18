@@ -14,9 +14,11 @@ extern NSString *const MNCalendarViewDayCellIdentifier;
 
 @property(nonatomic,strong,readonly) NSDate *date;
 @property(nonatomic,strong,readonly) NSDate *month;
+@property(nonatomic,strong,readonly) NSDate *lastDate;
 
 - (void)setDate:(NSDate *)date
           month:(NSDate *)month
+       lastDate:(NSDate *)lastDate
        calendar:(NSCalendar *)calendar;
 
 @end

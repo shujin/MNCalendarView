@@ -25,6 +25,7 @@
 @property(nonatomic,strong) NSCalendar *calendar;
 @property(nonatomic,copy)   NSDate     *fromDate;
 @property(nonatomic,copy)   NSDate     *toDate;
+@property(nonatomic,assign) NSInteger  daysInAdvance;
 @property(nonatomic,copy)   NSDate     *selectedDate;
 
 @property(nonatomic,strong) UIColor *separatorColor UI_APPEARANCE_SELECTOR; // default is the standard separator gray

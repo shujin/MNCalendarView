@@ -94,9 +94,7 @@
 }
 
 - (void)setProgressTintColor:(UIColor *)progressTintColor {
-    NSLog(@"i got called");
     _progressTintColor = progressTintColor;
-    NSLog(@"tintcolor: %@", self.progressTintColor);
     [self.collectionView reloadData];
 }
 
@@ -110,6 +108,12 @@
 
 - (void)setSelectedDate:(NSDate *)selectedDate {
   _selectedDate = [selectedDate mn_beginningOfDay:self.calendar];
+}
+
+- (void)setDaysInAdvance:(NSInteger)daysInAdvance {
+    _daysInAdvance = daysInAdvance;
+    self.toDate = [self.fromDate dateByAddingTimeInterval:MN_DAY * _daysInAdvance];
+    [self reloadData];
 }
 
 - (void)reloadData {
@@ -269,17 +273,24 @@
   NSDate *date = [self.calendar dateFromComponents:components];
   [cell setDate:date
           month:monthDate
+   lastDate:self.toDate
        calendar:self.calendar];
   
-  if (cell.enabled) {
-    [cell setEnabled:[self dateEnabled:date]];
-  }
+    cell.enabled = [self isDate:date betweenStartDate:self.fromDate andEndDate:self.toDate];
+    
 
   if (self.selectedDate && cell.enabled) {
     [cell setSelected:[date isEqualToDate:self.selectedDate]];
   }
   
   return cell;
+}
+
+- (BOOL)isDate:(NSDate *)date betweenStartDate:(NSDate*)startDate andEndDate:(NSDate *)endDate {
+    if (([date compare:startDate] == NSOrderedAscending) || ([date compare:endDate] == NSOrderedDescending)) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - UICollectionViewDelegate

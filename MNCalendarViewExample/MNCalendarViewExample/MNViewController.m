@@ -36,6 +36,7 @@
   self.calendarView = [[MNCalendarView alloc] initWithFrame:self.view.bounds];
   self.calendarView.calendar = self.calendar;
   self.calendarView.selectedDate = [NSDate date];
+    self.calendarView.daysInAdvance = 20;
   self.calendarView.delegate = self;
   self.calendarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   self.calendarView.backgroundColor = UIColor.whiteColor;

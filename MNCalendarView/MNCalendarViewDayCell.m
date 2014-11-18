@@ -14,6 +14,7 @@ NSString *const MNCalendarViewDayCellIdentifier = @"MNCalendarViewDayCellIdentif
 
 @property(nonatomic,strong,readwrite) NSDate *date;
 @property(nonatomic,strong,readwrite) NSDate *month;
+@property(nonatomic,strong,readwrite) NSDate *lastDate;
 @property(nonatomic,assign,readwrite) NSUInteger weekday;
 
 @end
@@ -22,24 +23,25 @@ NSString *const MNCalendarViewDayCellIdentifier = @"MNCalendarViewDayCellIdentif
 
 - (void)setDate:(NSDate *)date
           month:(NSDate *)month
+       lastDate:(NSDate *)lastDate
        calendar:(NSCalendar *)calendar {
   
   self.date     = date;
   self.month    = month;
   self.calendar = calendar;
+    self.lastDate = lastDate;
   
   NSDateComponents *components =
   [self.calendar components:NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit
                    fromDate:self.date];
   
-  NSDateComponents *monthComponents =
-  [self.calendar components:NSMonthCalendarUnit
-                   fromDate:self.month];
+//  NSDateComponents *monthComponents =
+//  [self.calendar components:NSMonthCalendarUnit
+//                   fromDate:self.month];
   
   self.weekday = components.weekday;
-  self.titleLabel.text = [NSString stringWithFormat:@"%d", components.day];
-  self.enabled = monthComponents.month == components.month;
-  
+  self.titleLabel.text = [NSString stringWithFormat:@"%ld", components.day];
+    
   [self setNeedsDisplay];
 }
 
