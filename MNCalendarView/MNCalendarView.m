@@ -48,7 +48,8 @@
   self.dayCellClass     = MNCalendarViewDayCell.class;
   
   _separatorColor = [UIColor colorWithRed:.85f green:.85f blue:.85f alpha:1.f];
-  
+  _progressTintColor = [UIColor colorWithRed:0.97 green:0.58 blue:0.02 alpha:1];
+    
   [self addSubview:self.collectionView];
   [self applyConstraints];
   [self reloadData];
@@ -77,7 +78,7 @@
     _collectionView =
       [[UICollectionView alloc] initWithFrame:CGRectZero
                          collectionViewLayout:layout];
-    _collectionView.backgroundColor = [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
+    _collectionView.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1];
     _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.showsVerticalScrollIndicator = NO;
@@ -95,7 +96,7 @@
 
 - (void)setProgressTintColor:(UIColor *)progressTintColor {
     _progressTintColor = progressTintColor;
-    [self.collectionView reloadData];
+//    [self.collectionView reloadData];
 }
 
 - (void)setCalendar:(NSCalendar *)calendar {
@@ -250,15 +251,15 @@
     
     cell.backgroundColor = self.collectionView.backgroundColor;
     cell.titleLabel.text = self.weekdaySymbols[indexPath.item];
-    cell.separatorColor = self.separatorColor;
-    cell.progressTintColor = self.progressTintColor;
+      cell.separatorColor = self.separatorColor;
+      cell.progressView.tintColor = self.progressTintColor;
     return cell;
   }
   MNCalendarViewDayCell *cell =
     [collectionView dequeueReusableCellWithReuseIdentifier:MNCalendarViewDayCellIdentifier
                                               forIndexPath:indexPath];
     cell.separatorColor = self.separatorColor;
-    cell.progressTintColor = self.progressTintColor;
+    cell.progressView.tintColor = self.progressTintColor;
   
   NSDate *monthDate = self.monthDates[indexPath.section];
   NSDate *firstDateInMonth = [self firstVisibleDateOfMonth:monthDate];

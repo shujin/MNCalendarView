@@ -58,11 +58,6 @@ NSString *const MNCalendarViewCellIdentifier = @"MNCalendarViewCellIdentifier";
   return self;
 }
 
-- (void)setProgressTintColor:(UIColor *)progressTintColor {
-    self.progressView.progressTintColor = self.progressTintColor;
-    [self setNeedsDisplay];
-}
-
 - (void)layoutSubviews {
   [super layoutSubviews];
   

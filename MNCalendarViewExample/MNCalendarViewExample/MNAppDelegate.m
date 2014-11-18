@@ -14,7 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  [[MNCalendarView appearance] setSeparatorColor:UIColor.blueColor];
+//  [[MNCalendarView appearance] setSeparatorColor:UIColor.blueColor];
 
   UITabBarController *controller = [[UITabBarController alloc] init];
   controller.viewControllers = @[
