@@ -281,7 +281,6 @@
   
     if (self.datesToHighlight.count > 0) {
         NSArray *filtered = [self.datesToHighlight filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(date == %@)", [date mn_beginningOfDay:self.calendar]]];
-        NSLog(@"filtered %@", date);
         NSDictionary *item = [filtered firstObject];
         cell.progressView.progress = [[item objectForKey:@"progress"] floatValue];
     }

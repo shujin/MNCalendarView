@@ -61,7 +61,7 @@
                                            @{ @"date": [[calendar dateByAddingComponents:components4 toDate:self.currentDate options:0] mn_beginningOfDay:self.calendar], @"progress" : @(0.4) },
                                            @{ @"date": [[calendar dateByAddingComponents:components5 toDate:self.currentDate options:0] mn_beginningOfDay:self.calendar], @"progress" : @(0.2) }
                                            ];
-    NSLog(@"array: %@", self.calendarView.datesToHighlight);
+
   [self.view addSubview:self.calendarView];
 }
 
