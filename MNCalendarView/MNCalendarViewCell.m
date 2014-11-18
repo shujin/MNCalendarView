@@ -45,7 +45,7 @@ NSString *const MNCalendarViewCellIdentifier = @"MNCalendarViewCellIdentifier";
     self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-2, self.bounds.size.width, 2)];
     self.progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.progressView.progressViewStyle = UIProgressViewStyleBar;
-    self.progressView.progress = 0.5;
+    self.progressView.progress = 0;
       
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.progressView];
