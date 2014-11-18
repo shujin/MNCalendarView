@@ -93,6 +93,13 @@
   _separatorColor = separatorColor;
 }
 
+- (void)setProgressTintColor:(UIColor *)progressTintColor {
+    NSLog(@"i got called");
+    _progressTintColor = progressTintColor;
+    NSLog(@"tintcolor: %@", self.progressTintColor);
+    [self.collectionView reloadData];
+}
+
 - (void)setCalendar:(NSCalendar *)calendar {
   _calendar = calendar;
   
@@ -240,12 +247,14 @@
     cell.backgroundColor = self.collectionView.backgroundColor;
     cell.titleLabel.text = self.weekdaySymbols[indexPath.item];
     cell.separatorColor = self.separatorColor;
+    cell.progressTintColor = self.progressTintColor;
     return cell;
   }
   MNCalendarViewDayCell *cell =
     [collectionView dequeueReusableCellWithReuseIdentifier:MNCalendarViewDayCellIdentifier
                                               forIndexPath:indexPath];
-  cell.separatorColor = self.separatorColor;
+    cell.separatorColor = self.separatorColor;
+    cell.progressTintColor = self.progressTintColor;
   
   NSDate *monthDate = self.monthDates[indexPath.section];
   NSDate *firstDateInMonth = [self firstVisibleDateOfMonth:monthDate];

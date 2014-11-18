@@ -28,13 +28,15 @@
 @property(nonatomic,copy)   NSDate     *selectedDate;
 
 @property(nonatomic,strong) UIColor *separatorColor UI_APPEARANCE_SELECTOR; // default is the standard separator gray
+@property(nonatomic,strong) UIColor *progressTintColor;
 
 @property(nonatomic,strong) Class headerViewClass;
 @property(nonatomic,strong) Class weekdayCellClass;
 @property(nonatomic,strong) Class dayCellClass;
 
 - (void)reloadData;
-- (void)registerUICollectionViewClasses; 
+- (void)registerUICollectionViewClasses;
+- (void)setProgressTintColor:(UIColor *)progressTintColor;
 
 @end
 

@@ -17,7 +17,11 @@ CG_EXTERN void MNContextDrawLine(CGContextRef c, CGPoint start, CGPoint end, CGC
 @property(nonatomic,assign,getter = isEnabled) BOOL enabled;
 
 @property(nonatomic,strong) UIColor *separatorColor;
+@property(nonatomic,strong) UIColor *progressTintColor;
 
 @property(nonatomic,strong,readonly) UILabel *titleLabel;
+@property(nonatomic,strong) UIProgressView *progressView;
+
+- (void)setProgressTintColor:(UIColor *)progressTintColor;
 
 @end

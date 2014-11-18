@@ -41,14 +41,26 @@ NSString *const MNCalendarViewCellIdentifier = @"MNCalendarViewCellIdentifier";
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.userInteractionEnabled = NO;
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    
+      
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-2, self.bounds.size.width, 2)];
+    self.progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.progressView.progressViewStyle = UIProgressViewStyleBar;
+    self.progressView.progress = 0.5;
+      
     [self.contentView addSubview:self.titleLabel];
-    
+    [self.contentView addSubview:self.progressView];
+
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.23f green:0.61f blue:1.f alpha:1.f];
+
   }
   return self;
+}
+
+- (void)setProgressTintColor:(UIColor *)progressTintColor {
+    self.progressView.progressTintColor = self.progressTintColor;
+    [self setNeedsDisplay];
 }
 
 - (void)layoutSubviews {
