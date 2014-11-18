@@ -277,8 +277,14 @@
    lastDate:self.toDate
        calendar:self.calendar];
   
-    cell.enabled = [self isDate:date betweenStartDate:self.fromDate andEndDate:self.toDate];
-    
+  cell.enabled = [self isDate:date betweenStartDate:self.fromDate andEndDate:self.toDate];
+  
+    if (self.datesToHighlight.count > 0) {
+        NSArray *filtered = [self.datesToHighlight filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(date == %@)", [date mn_beginningOfDay:self.calendar]]];
+        NSLog(@"filtered %@", date);
+        NSDictionary *item = [filtered firstObject];
+        cell.progressView.progress = [[item objectForKey:@"progress"] floatValue];
+    }
 
   if (self.selectedDate && cell.enabled) {
     [cell setSelected:[date isEqualToDate:self.selectedDate]];
