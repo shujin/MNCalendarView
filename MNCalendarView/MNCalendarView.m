@@ -277,12 +277,14 @@
    lastDate:self.toDate
        calendar:self.calendar];
   
-  cell.enabled = [self isDate:date betweenStartDate:self.fromDate andEndDate:self.toDate];
+  cell.enabled = [self isDate:date betweenStartDate:self.fromDate andEndDate:self.toDate andInMonth:monthDate];
   
     if (self.datesToHighlight.count > 0) {
         NSArray *filtered = [self.datesToHighlight filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(date == %@)", [date mn_beginningOfDay:self.calendar]]];
         NSDictionary *item = [filtered firstObject];
-        cell.progressView.progress = [[item objectForKey:@"progress"] floatValue];
+        if (cell.enabled) {
+            cell.progressView.progress = [[item objectForKey:@"progress"] floatValue];
+        }
     }
 
   if (self.selectedDate && cell.enabled) {
@@ -292,8 +294,14 @@
   return cell;
 }
 
-- (BOOL)isDate:(NSDate *)date betweenStartDate:(NSDate*)startDate andEndDate:(NSDate *)endDate {
-    if (([date compare:startDate] == NSOrderedAscending) || ([date compare:endDate] == NSOrderedDescending)) {
+- (BOOL)isDate:(NSDate *)date betweenStartDate:(NSDate*)startDate andEndDate:(NSDate *)endDate andInMonth:(NSDate *)month {
+    NSDateComponents *dateComponents =
+    [self.calendar components:NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit
+                     fromDate:date];
+    NSDateComponents *monthComponents =
+    [self.calendar components:NSMonthCalendarUnit
+                     fromDate:month];
+    if (([date compare:startDate] == NSOrderedAscending) || ([date compare:endDate] == NSOrderedDescending) || monthComponents.month != dateComponents.month) {
         return NO;
     }
     return YES;
