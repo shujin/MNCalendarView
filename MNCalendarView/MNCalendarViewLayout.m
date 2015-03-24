@@ -31,7 +31,8 @@
       bounds;
     })];
   
-  CGFloat minOffsetY = CGFLOAT_MAX;
+//  CGFloat minOffsetY = CGFLOAT_MAX;
+    CGFloat minOffsetY = 0;
   UICollectionViewLayoutAttributes *targetLayoutAttributes = nil;
 
   for (UICollectionViewLayoutAttributes *layoutAttributes in array) {

@@ -50,6 +50,7 @@
   _separatorColor = [UIColor colorWithRed:.85f green:.85f blue:.85f alpha:1.f];
   _progressTintColor = [UIColor colorWithRed:0.97 green:0.58 blue:0.02 alpha:1];
     
+    self.collectionView.backgroundColor = [UIColor whiteColor];
   [self addSubview:self.collectionView];
   [self applyConstraints];
   [self reloadData];
@@ -223,7 +224,7 @@
                                        withReuseIdentifier:MNCalendarHeaderViewIdentifier
                                               forIndexPath:indexPath];
 
-  headerView.backgroundColor = self.collectionView.backgroundColor;
+    headerView.backgroundColor = [UIColor colorWithRed:0.68 green:0.82 blue:0.89 alpha:1];;
   headerView.titleLabel.text = [self.monthFormatter stringFromDate:self.monthDates[indexPath.section]];
 
   return headerView;
@@ -249,8 +250,8 @@
       [collectionView dequeueReusableCellWithReuseIdentifier:MNCalendarViewWeekdayCellIdentifier
                                                 forIndexPath:indexPath];
     
-    cell.backgroundColor = self.collectionView.backgroundColor;
-    cell.titleLabel.text = self.weekdaySymbols[indexPath.item];
+      cell.backgroundColor = [UIColor colorWithRed:0.68 green:0.82 blue:0.89 alpha:1];
+    cell.titleLabel.text = [self.weekdaySymbols[indexPath.item] uppercaseString];
       cell.separatorColor = self.separatorColor;
       cell.progressView.tintColor = self.progressTintColor;
     return cell;
